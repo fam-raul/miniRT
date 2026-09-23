@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atanimot0414 <atanimot0414@student.42.fr> +#+  +:+       +#+        */
+/*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/26 00:00:00 by atanimot0414      #+#    #+#             */
-/*   Updated: 2026/02/26 00:00:00 by atanimot0414     ###   ########.fr       */
+/*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
+/*   Updated: 2026/09/23 21:00:40 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,6 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 	i = 0;
 	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-/* Compares at most n characters between two strings. */
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	if (n == 0)
-		return (0);
-	while (i + 1 < n && s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

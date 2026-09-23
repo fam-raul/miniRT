@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_numbers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atanimot0414 <atanimot0414@student.42.fr> +#+  +:+       +#+        */
+/*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/26 00:00:00 by atanimot0414      #+#    #+#             */
-/*   Updated: 2026/02/26 00:00:00 by atanimot0414     ###   ########.fr       */
+/*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
+/*   Updated: 2026/09/23 21:00:16 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,32 +86,5 @@ int	parse_double(const char *s, double *out)
 	if (!digits || s[i] != '\0')
 		return (1);
 	*out = (intpart + frac) * sign;
-	return (0);
-}
-
-/* Parses a decimal integer string into int with range checks. */
-int	parse_int(const char *s, int *out)
-{
-	int		i;
-	int		sign;
-	long	val;
-
-	if (!s || !s[0])
-		return (1);
-	i = 0;
-	sign = read_sign(s, &i);
-	if (!ft_isdigit(s[i]))
-		return (1);
-	val = 0;
-	while (ft_isdigit(s[i]))
-	{
-		val = val * 10 + (s[i++] - '0');
-		if ((sign == 1 && val > INT_MAX)
-			|| (sign == -1 && val > (long)INT_MAX + 1))
-			return (1);
-	}
-	if (s[i] != '\0')
-		return (1);
-	*out = (int)(val * sign);
 	return (0);
 }

@@ -1,24 +1,25 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#              #
+#    Updated: 2026/09/23 21:17:48 by rmainaga         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = miniRT
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-# OSの自動判別 (Darwin = Mac, Linux = Linux)
 UNAME_S := $(shell uname -s)
 
-ifeq ($(UNAME_S), Linux)
-    # --- Linux (提出環境) ---
-    MLX_DIR = minilibx-linux
-    MLX_LIB = $(MLX_DIR)/libmlx_Linux.a
-    MLX_FLAGS = -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz
-    INCLUDES = -Iinclude -I$(MLX_DIR)
-else
-    # --- Mac (ローカル開発環境) ---
-    # ※Mac用に `minilibx_mms` または `minilibx_opengl` のディレクトリ名に合わせて変更してください
-    MLX_DIR = minilibx_mms
-    MLX_LIB = $(MLX_DIR)/libmlx.dylib
-    MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
-    INCLUDES = -Iinclude -I$(MLX_DIR)
-endif
+MLX_DIR = minilibx-linux
+MLX_LIB = $(MLX_DIR)/libmlx_Linux.a
+MLX_FLAGS = -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz
+INCLUDES = -Iinclude -I$(MLX_DIR)
 
 SRCS = src/main.c \
     src/app.c \

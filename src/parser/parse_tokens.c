@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atanimot0414 <atanimot0414@student.42.fr> +#+  +:+       +#+        */
+/*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/26 00:00:00 by atanimot0414      #+#    #+#             */
-/*   Updated: 2026/02/26 00:00:00 by atanimot0414     ###   ########.fr       */
+/*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
+/*   Updated: 2026/09/23 21:01:08 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,4 @@ void	free_split(char **arr)
 		i++;
 	}
 	free(arr);
-}
-
-/* Trims leading and trailing parser whitespaces from a line. */
-char	*trim_line(const char *line)
-{
-	size_t	start;
-	size_t	end;
-
-	start = 0;
-	while (line[start] && ft_isspace(line[start]))
-		start++;
-	end = ft_strlen(line);
-	while (end > start && ft_isspace(line[end - 1]))
-		end--;
-	return (ft_substr(line, start, end - start));
 }

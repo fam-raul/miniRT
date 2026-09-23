@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atanimot0414 <atanimot0414@student.42.fr> +#+  +:+       +#+        */
+/*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/26 00:00:00 by atanimot0414      #+#    #+#             */
-/*   Updated: 2026/02/26 00:00:00 by atanimot0414     ###   ########.fr       */
+/*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
+/*   Updated: 2026/09/23 21:02:15 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,11 +162,9 @@ int		loop_hook(t_app *app);
 /* parser */
 int		parse_scene(t_scene *scene, const char *path);
 char	*read_entire_file(const char *path);
-char	*trim_line(const char *line);
 char	**split_spaces(const char *line, int *count);
 void	free_split(char **arr);
 int		parse_double(const char *s, double *out);
-int		parse_int(const char *s, int *out);
 int		parse_ratio(const char *s, double *out);
 int		parse_fov(const char *s, double *out);
 int		parse_vec3(const char *s, t_vec3 *out);
@@ -198,7 +196,6 @@ int		is_in_shadow(const t_scene *scene, const t_hit *hit);
 /* strings */
 size_t	ft_strlen(const char *s);
 int		ft_strcmp(const char *s1, const char *s2);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_isdigit(int c);
 int		ft_isspace(int c);
 char	*ft_strdup(const char *s);

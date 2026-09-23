@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atanimot0414 <atanimot0414@student.42.fr> +#+  +:+       +#+        */
+/*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/26 00:00:00 by atanimot0414      #+#    #+#             */
-/*   Updated: 2026/02/26 00:00:00 by atanimot0414     ###   ########.fr       */
+/*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
+/*   Updated: 2026/09/23 21:07:42 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	is_in_shadow(const t_scene *scene, const t_hit *hit)
 	return (hit_shadow(scene, &shadow, dist - SHADOW_BIAS));
 }
 
-/* Computes final shaded color using ambient + diffuse + hard shadow. */
 t_color	shade_hit(const t_scene *scene, const t_hit *hit)
 {
 	t_color	out;
@@ -56,8 +55,6 @@ t_color	shade_hit(const t_scene *scene, const t_hit *hit)
 		return (out);
 	light_dir = vec_normalize(vec_sub(scene->light.pos, hit->point));
 	n_dot_l = fmax(0.0, vec_dot(hit->normal, light_dir));
-	diffuse = color_mul(hit->color,
-			color_scale(scene->light.color, 1.0 / 255.0));
-	diffuse = color_scale(diffuse, scene->light.ratio * n_dot_l);
+	diffuse = color_scale(hit->color, scene->light.ratio * n_dot_l);
 	return (add_color(out, diffuse));
 }

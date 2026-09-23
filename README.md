@@ -1,110 +1,111 @@
-# miniRT (42 mandatory)
+*This project has been created as part of the 42 curriculum by atanimot[,rmainaga].*
 
-This repository contains a full mandatory implementation of `miniRT` using MiniLibX.
+# miniRT
 
-## Implemented mandatory features
+## Description
 
-- Parsing of `.rt` scenes with strict identifiers:
-  - `A` (ambient, unique)
-  - `C` (camera, unique)
-  - `L` (light, unique)
-  - `sp`, `pl`, `cy` (objects)
-- Robust value validation:
-  - ratios in `[0.0, 1.0]`
-  - colors in `[0, 255]`
-  - normalized vectors for camera/plane/cylinder axis
-  - positive diameters/heights
-- Ray tracing objects:
-  - sphere
-  - plane
-  - finite cylinder with both caps
-- Lighting model:
-  - ambient
-  - diffuse
-  - hard shadows
-- Window/event behavior:
-  - render to image + display in window
-  - `ESC` closes the app cleanly
-  - window close button also exits cleanly
-- Error behavior:
-  - on invalid configuration: prints `Error\n` + explicit message
+`miniRT` is a minimal ray tracer written in C, using the MiniLibX library, developed
+as part of the 42 common core. It renders a static 3D scene described in a `.rt` text
+file — one ambient light, one camera, one light source, and any number of spheres,
+planes and cylinders — into a window, using ambient and diffuse lighting with hard
+shadows.
 
-## Notes about comments and norm
+This repository contains the mandatory part only (no bonus features).
 
-- Every function includes a short comment describing its purpose.
-- All files under `include/` and `src/` pass `norminette`.
+## Instructions
 
-## Build
+### Build
 
 ```bash
 make
 ```
 
-This Makefile builds MiniLibX (`minilibx-linux`) and then the project.
+The Makefile first builds the bundled `minilibx-linux` library, then compiles the
+project.
 
-## Run
+### Run
 
 ```bash
 ./miniRT scenes/minimal.rt
 ```
 
-Sample scenes are provided in `scenes/`.
-- `scenes/visible.rt`: quick visible confirmation scene
-- `scenes/tests_valid/*.rt`: mandatory-valid regression scenes
-- `scenes/tests_invalid/*`: parser/error regression scenes
-- `scenes/correction_mandatory/*.rt`: scenes aligned with common evaluation-sheet mandatory checks
+The program takes exactly one argument: the path to a `.rt` scene file.
 
-## Regression test
+- `ESC` or the window's close button exits the program cleanly.
+- Any malformed scene file makes the program print `Error` followed by an explicit
+  message, and exit without opening a window.
 
-```bash
-./scripts/test_scenes.sh
-```
-
-This script:
-- builds the project
-- runs valid scenes (expects no `Error`)
-- runs invalid scenes (expects `Error`)
-- prints a pass/fail summary
-
-## Evaluation-sheet mandatory check
+### Clean
 
 ```bash
-./scripts/check_correction_mandatory.sh
+make clean   # remove object files
+make fclean  # also remove the binary
+make re      # fclean + all
 ```
 
-This script runs a mandatory-focused scene pack (`14` scenes) corresponding to:
-- basic shapes
-- translation / rotation
-- multi-objects
-- camera direction and position cases
-- brightness and shadows
-
-## Interactive visual review (with evaluator order)
+### Regression tests
 
 ```bash
-./scripts/review_correction_cases.sh
+./scripts/test_scenes.sh                # valid/invalid scenes, checks Error/no-Error behaviour
+./scripts/check_correction_mandatory.sh # a 14-scene mandatory-focused pack
+./scripts/review_correction_cases.sh    # opens the same 14 scenes one by one for visual review
 ```
 
-This launches the 14 mandatory-focused scenes one by one.
-Close each window (`ESC` or red cross) to move to the next case.
+Sample scenes are provided under `scenes/`:
+- `scenes/tests_valid/*.rt` — scenes expected to render without error
+- `scenes/tests_invalid/*` — scenes expected to be rejected with `Error`
+- `scenes/correction_mandatory/*.rt` — scenes covering common mandatory evaluation
+  points (shapes, translation/rotation, camera axes, brightness, shadows)
 
-## Clean
+### Features
 
-```bash
-make clean
-make fclean
-make re
-```
+- `.rt` scene parser with strict identifiers and validation:
+  - `A` ambient light (ratio + color), `C` camera (position, orientation, FOV),
+    `L` light (position, brightness ratio, color) — each allowed only once
+  - `sp` sphere, `pl` plane, `cy` cylinder (finite, with both caps)
+  - ratios in `[0.0, 1.0]`, colors in `[0, 255]`, normalized orientation vectors,
+    strictly positive diameters/heights
+  - elements may appear in any order, separated by one or more spaces/line breaks
+- Ray tracing:
+  - arbitrarily positioned/oriented sphere, plane and cylinder, correctly handling
+    views from inside an object
+  - camera with an arbitrary orientation vector and a configurable horizontal field
+    of view
+- Lighting:
+  - ambient lighting (objects are never fully black)
+  - diffuse lighting scaled by the light's brightness ratio
+  - hard shadows
+- Window: the image is rendered once into an MLX image and displayed; `ESC` and the
+  window's close button both exit cleanly; switching/minimizing the window stays
+  responsive since nothing re-renders on every event.
 
-## Scene format quick reference
+### Scene format
 
-Each non-empty line begins with an identifier:
+Each non-empty line begins with an identifier; elements may appear in any order.
 
 - Ambient: `A ratio R,G,B`
-- Camera: `C x,y,z nx,ny,nz fov`
-- Light: `L x,y,z ratio R,G,B`
-- Sphere: `sp x,y,z diameter R,G,B`
-- Plane: `pl x,y,z nx,ny,nz R,G,B`
-- Cylinder: `cy x,y,z nx,ny,nz diameter height R,G,B`
+- Camera: `C x,y,z  dx,dy,dz  fov`
+- Light: `L x,y,z  ratio  R,G,B`
+- Sphere: `sp x,y,z  diameter  R,G,B`
+- Plane: `pl x,y,z  nx,ny,nz  R,G,B`
+- Cylinder: `cy x,y,z  ax,ay,az  diameter  height  R,G,B`
 
-Examples are in `scenes/minimal.rt`.
+## Resources
+
+- MiniLibX documentation: `minilibx-linux/README.md` and the man pages under
+  `minilibx-linux/man/`
+- Scratchapixel — "Ray Tracing: Generating Camera Rays" and "A Minimal Ray-Tracer":
+  background on ray/sphere and ray/plane intersections and the Phong lighting model
+- Wikipedia — "Ray tracing (graphics)" and "Phong reflection model"
+
+### AI usage
+
+AI assistance (Claude) was used to review this implementation against the project
+subject. It pointed out that this README did not follow the subject's required
+structure, that three functions (`parse_int`, `ft_strncmp`, `trim_line`) were
+declared and defined but never called anywhere in the mandatory part, and that the
+diffuse shading term incorrectly used the light's R, G, B color even though the
+subject marks that value as unused in the mandatory part. It was also used to
+explain the ray-tracing pipeline (camera basis, ray generation, sphere/plane/cylinder
+intersection, ambient/diffuse/shadow shading) line by line for the project defense.
+The suggested fixes were reviewed and understood before being applied.
