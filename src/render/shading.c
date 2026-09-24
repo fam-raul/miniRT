@@ -6,19 +6,17 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 21:07:42 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 15:31:48 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-/* Adds two colors channel-wise. */
 static t_color	add_color(t_color a, t_color b)
 {
 	return (color3(a.r + b.r, a.g + b.g, a.b + b.b));
 }
 
-/* Computes ambient lighting term for one hit point. */
 static t_color	ambient_term(const t_scene *scene, const t_hit *hit)
 {
 	t_color	ambient_tint;
@@ -29,7 +27,6 @@ static t_color	ambient_term(const t_scene *scene, const t_hit *hit)
 	return (color_scale(base, scene->ambient.ratio));
 }
 
-/* Casts one shadow ray toward the light and checks any blocker. */
 int	is_in_shadow(const t_scene *scene, const t_hit *hit)
 {
 	t_ray	shadow;

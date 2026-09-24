@@ -6,13 +6,12 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 20:51:19 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 15:35:21 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-/* Grows a heap buffer when more capacity is required. */
 static int	expand_buffer(char **buf, size_t *cap, size_t len, size_t need)
 {
 	size_t	new_cap;
@@ -31,7 +30,6 @@ static int	expand_buffer(char **buf, size_t *cap, size_t len, size_t need)
 	return (0);
 }
 
-/* Reads all bytes from fd and appends them to the dynamic buffer. */
 static int	read_loop(int fd, char **buf, size_t *len, size_t *cap)
 {
 	char	chunk[4096];
@@ -52,7 +50,6 @@ static int	read_loop(int fd, char **buf, size_t *len, size_t *cap)
 	return (0);
 }
 
-/* Loads the complete scene file into a NUL-terminated string. */
 char	*read_entire_file(const char *path)
 {
 	int		fd;

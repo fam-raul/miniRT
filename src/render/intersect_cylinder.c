@@ -6,13 +6,12 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 20:51:13 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 15:34:57 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-/* Checks if side intersection lies within finite cylinder height. */
 static int	within_height(const t_ray *ray, t_cylinder cy, t_vec3 oc, double t)
 {
 	double	m;
@@ -21,7 +20,6 @@ static int	within_height(const t_ray *ray, t_cylinder cy, t_vec3 oc, double t)
 	return (fabs(m) <= cy.height * 0.5);
 }
 
-/* Tests the cylinder side surface and returns nearest valid t. */
 static int	hit_side(const t_ray *ray, t_cylinder cy, double *t)
 {
 	t_vec3	oc;
@@ -49,7 +47,6 @@ static int	hit_side(const t_ray *ray, t_cylinder cy, double *t)
 	return (0);
 }
 
-/* Tests one circular cap and returns t or -1 when there is no hit. */
 static double	hit_cap(const t_ray *ray, t_vec3 center,
 	t_vec3 normal, double r)
 {
@@ -69,7 +66,6 @@ static double	hit_cap(const t_ray *ray, t_vec3 center,
 	return (t);
 }
 
-/* Tests both caps and keeps nearest t when any cap is hit. */
 static int	hit_caps(const t_ray *ray, t_cylinder cy, double *t)
 {
 	t_vec3	center;
@@ -94,7 +90,6 @@ static int	hit_caps(const t_ray *ray, t_cylinder cy, double *t)
 	return (1);
 }
 
-/* Returns nearest intersection t for finite capped cylinder. */
 int	intersect_cylinder(const t_ray *ray, const t_object *obj, double *t)
 {
 	double	t_side;

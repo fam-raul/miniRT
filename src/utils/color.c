@@ -6,13 +6,12 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 20:50:25 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 15:33:30 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-/* Builds a color container in RGB space. */
 t_color	color3(double r, double g, double b)
 {
 	t_color	c;
@@ -23,19 +22,16 @@ t_color	color3(double r, double g, double b)
 	return (c);
 }
 
-/* Multiplies each channel by a scalar. */
 t_color	color_scale(t_color c, double s)
 {
 	return (color3(c.r * s, c.g * s, c.b * s));
 }
 
-/* Multiplies two colors channel by channel. */
 t_color	color_mul(t_color a, t_color b)
 {
 	return (color3(a.r * b.r, a.g * b.g, a.b * b.b));
 }
 
-/* Converts floating RGB channels to 0xRRGGBB integer. */
 int	color_to_int(t_color c)
 {
 	int	r;
@@ -48,7 +44,6 @@ int	color_to_int(t_color c)
 	return ((r << 16) | (g << 8) | b);
 }
 
-/* Writes one pixel in the mlx image buffer. */
 void	img_put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;

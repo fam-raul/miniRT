@@ -6,13 +6,12 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 21:00:16 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 16:08:33 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-/* Parses and consumes an optional sign character. */
 static int	read_sign(const char *s, int *i)
 {
 	int	sign;
@@ -27,7 +26,6 @@ static int	read_sign(const char *s, int *i)
 	return (sign);
 }
 
-/* Reads an unsigned integer part as double and reports digit presence. */
 static int	read_intpart(const char *s, int *i, double *val)
 {
 	int	digits;
@@ -43,7 +41,6 @@ static int	read_intpart(const char *s, int *i, double *val)
 	return (digits);
 }
 
-/* Reads optional fraction part and returns whether it had digits. */
 static int	read_fraction(const char *s, int *i, double *frac)
 {
 	double	num;
@@ -68,7 +65,6 @@ static int	read_fraction(const char *s, int *i, double *frac)
 	return (digits);
 }
 
-/* Parses a decimal string into double without exponent syntax. */
 int	parse_double(const char *s, double *out)
 {
 	int		i;

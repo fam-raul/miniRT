@@ -6,13 +6,12 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 20:51:39 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 16:00:16 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-/* Appends one parsed object to the dynamic object array. */
 int	add_object(t_scene *scene, t_object obj)
 {
 	t_object	*new_arr;
@@ -37,7 +36,6 @@ int	add_object(t_scene *scene, t_object obj)
 	return (0);
 }
 
-/* Parses sphere: center, diameter, color. */
 int	parse_sphere(t_scene *scene, char **tk, int count, int line_no)
 {
 	t_object	obj;
@@ -56,7 +54,6 @@ int	parse_sphere(t_scene *scene, char **tk, int count, int line_no)
 	return (0);
 }
 
-/* Parses plane: point, normal vector, color. */
 int	parse_plane(t_scene *scene, char **tk, int count, int line_no)
 {
 	t_object	obj;
@@ -75,7 +72,6 @@ int	parse_plane(t_scene *scene, char **tk, int count, int line_no)
 	return (0);
 }
 
-/* Parses cylinder: center, axis, diameter, height, color. */
 int	parse_cylinder(t_scene *scene, char **tk, int count, int line_no)
 {
 	t_object	obj;
@@ -100,7 +96,6 @@ int	parse_cylinder(t_scene *scene, char **tk, int count, int line_no)
 	return (0);
 }
 
-/* Verifies required mandatory elements exist exactly once. */
 int	validate_scene(const t_scene *scene)
 {
 	if (!scene->has_ambient)

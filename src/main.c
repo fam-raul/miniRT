@@ -6,13 +6,12 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 20:49:27 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 15:19:04 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-/* Entry point: parse scene, render once and run mlx loop. */
 int	main(int argc, char **argv)
 {
 	t_app	app;

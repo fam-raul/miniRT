@@ -6,13 +6,12 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 20:49:37 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 15:19:58 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-/* Initializes the runtime container with zeroed fields. */
 void	init_app(t_app *app)
 {
 	app->mlx = NULL;
@@ -30,7 +29,6 @@ void	init_app(t_app *app)
 	app->scene.has_light = 0;
 }
 
-/* Releases dynamic scene allocations. */
 void	free_scene(t_scene *scene)
 {
 	free(scene->objects);
@@ -39,7 +37,6 @@ void	free_scene(t_scene *scene)
 	scene->obj_cap = 0;
 }
 
-/* Destroys allocated resources and exits with status. */
 int	destroy_app(t_app *app, int status)
 {
 	if (app->img.ptr && app->mlx)
@@ -52,7 +49,6 @@ int	destroy_app(t_app *app, int status)
 	return (status);
 }
 
-/* Creates mlx context, window and the framebuffer image. */
 int	init_mlx(t_app *app)
 {
 	app->mlx = mlx_init();

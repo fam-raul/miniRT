@@ -26,7 +26,7 @@ project.
 ### Run
 
 ```bash
-./miniRT scenes/minimal.rt
+./miniRT scenes/*.rt
 ```
 
 The program takes exactly one argument: the path to a `.rt` scene file.
@@ -43,19 +43,8 @@ make fclean  # also remove the binary
 make re      # fclean + all
 ```
 
-### Regression tests
-
-```bash
-./scripts/test_scenes.sh                # valid/invalid scenes, checks Error/no-Error behaviour
-./scripts/check_correction_mandatory.sh # a 14-scene mandatory-focused pack
-./scripts/review_correction_cases.sh    # opens the same 14 scenes one by one for visual review
-```
-
 Sample scenes are provided under `scenes/`:
-- `scenes/tests_valid/*.rt` — scenes expected to render without error
-- `scenes/tests_invalid/*` — scenes expected to be rejected with `Error`
-- `scenes/correction_mandatory/*.rt` — scenes covering common mandatory evaluation
-  points (shapes, translation/rotation, camera axes, brightness, shadows)
+Test scene files numbered 01 through 14 are included.
 
 ### Features
 
@@ -66,18 +55,6 @@ Sample scenes are provided under `scenes/`:
   - ratios in `[0.0, 1.0]`, colors in `[0, 255]`, normalized orientation vectors,
     strictly positive diameters/heights
   - elements may appear in any order, separated by one or more spaces/line breaks
-- Ray tracing:
-  - arbitrarily positioned/oriented sphere, plane and cylinder, correctly handling
-    views from inside an object
-  - camera with an arbitrary orientation vector and a configurable horizontal field
-    of view
-- Lighting:
-  - ambient lighting (objects are never fully black)
-  - diffuse lighting scaled by the light's brightness ratio
-  - hard shadows
-- Window: the image is rendered once into an MLX image and displayed; `ESC` and the
-  window's close button both exit cleanly; switching/minimizing the window stays
-  responsive since nothing re-renders on every event.
 
 ### Scene format
 
@@ -92,11 +69,19 @@ Each non-empty line begins with an identifier; elements may appear in any order.
 
 ## Resources
 
-- MiniLibX documentation: `minilibx-linux/README.md` and the man pages under
-  `minilibx-linux/man/`
-- Scratchapixel — "Ray Tracing: Generating Camera Rays" and "A Minimal Ray-Tracer":
-  background on ray/sphere and ray/plane intersections and the Phong lighting model
-- Wikipedia — "Ray tracing (graphics)" and "Phong reflection model"
+### Ray tracing:
+  - arbitrarily positioned/oriented sphere, plane and cylinder, correctly handling
+    views from inside an object
+  - camera with an arbitrary orientation vector and a configurable horizontal field
+    of view
+
+### Lighting:
+  - ambient lighting (objects are never fully black)
+  - diffuse lighting scaled by the light's brightness ratio
+  - hard shadows
+
+### Reference
+Ray Tracing:https://developer.nvidia.com/discover/ray-tracing
 
 ### AI usage
 

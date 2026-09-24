@@ -6,13 +6,12 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 20:51:34 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 15:05:18 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-/* Prints subject-compliant error header with a custom message. */
 int	rt_error(const char *msg, int line_no)
 {
 	write(2, "Error\n", 6);
@@ -23,7 +22,6 @@ int	rt_error(const char *msg, int line_no)
 	return (1);
 }
 
-/* Checks that the input filename ends with .rt. */
 static int	has_rt_extension(const char *path)
 {
 	size_t	len;
@@ -34,7 +32,6 @@ static int	has_rt_extension(const char *path)
 	return (!ft_strcmp(path + len - 3, ".rt"));
 }
 
-/* Splits loaded content by lines and parses each non-empty line. */
 static int	parse_content(t_scene *scene, char *content)
 {
 	size_t	start;
@@ -64,7 +61,6 @@ static int	parse_content(t_scene *scene, char *content)
 	return (0);
 }
 
-/* Parses a complete .rt file into the scene structure. */
 int	parse_scene(t_scene *scene, const char *path)
 {
 	char	*content;

@@ -6,7 +6,7 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 21:02:15 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 16:03:15 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,6 @@ typedef struct s_app
 # define KEY_ESC_MAC 53
 # define PI 3.14159265358979323846
 
-/* app */
 void	init_app(t_app *app);
 void	free_scene(t_scene *scene);
 int		destroy_app(t_app *app, int status);
@@ -159,7 +158,6 @@ int		key_press(int keycode, t_app *app);
 int		expose_hook(t_app *app);
 int		loop_hook(t_app *app);
 
-/* parser */
 int		parse_scene(t_scene *scene, const char *path);
 char	*read_entire_file(const char *path);
 char	**split_spaces(const char *line, int *count);
@@ -181,7 +179,6 @@ int		add_object(t_scene *scene, t_object obj);
 int		validate_scene(const t_scene *scene);
 int		rt_error(const char *msg, int line_no);
 
-/* render */
 void	build_camera_basis(t_camera *cam);
 t_ray	create_camera_ray(const t_camera *cam, int x, int y);
 void	render_scene(t_app *app);
@@ -193,7 +190,6 @@ int		intersect_cylinder(const t_ray *ray, const t_object *obj, double *t);
 t_color	shade_hit(const t_scene *scene, const t_hit *hit);
 int		is_in_shadow(const t_scene *scene, const t_hit *hit);
 
-/* strings */
 size_t	ft_strlen(const char *s);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_isdigit(int c);
@@ -202,7 +198,6 @@ char	*ft_strdup(const char *s);
 char	*ft_substr(const char *s, size_t start, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 
-/* math */
 t_vec3	vec3(double x, double y, double z);
 t_vec3	vec_add(t_vec3 a, t_vec3 b);
 t_vec3	vec_sub(t_vec3 a, t_vec3 b);
@@ -214,7 +209,6 @@ t_vec3	vec_normalize(t_vec3 v);
 double	clamp_value(double v, double min, double max);
 t_vec3	ray_at(t_ray ray, double t);
 
-/* color & image */
 t_color	color3(double r, double g, double b);
 t_color	color_scale(t_color c, double s);
 t_color	color_mul(t_color a, t_color b);

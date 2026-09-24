@@ -6,13 +6,12 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 21:01:08 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 15:53:54 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-/* Counts whitespace-separated words in one line. */
 static int	count_words(const char *line)
 {
 	int	count;
@@ -34,7 +33,6 @@ static int	count_words(const char *line)
 	return (count);
 }
 
-/* Fills token array from input line after count_words allocation. */
 static int	fill_words(const char *line, char **arr, int count)
 {
 	size_t	start;
@@ -57,7 +55,6 @@ static int	fill_words(const char *line, char **arr, int count)
 	return (0);
 }
 
-/* Extracts each space-delimited token into a newly allocated array. */
 char	**split_spaces(const char *line, int *count)
 {
 	char	**arr;
@@ -75,7 +72,6 @@ char	**split_spaces(const char *line, int *count)
 	return (arr);
 }
 
-/* Frees a NULL-terminated array of strings. */
 void	free_split(char **arr)
 {
 	int	i;

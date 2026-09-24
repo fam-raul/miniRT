@@ -6,13 +6,12 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 20:50:58 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 15:18:22 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-/* Routes one object to its specific intersection function. */
 static int	intersect_object(const t_ray *ray, const t_object *obj, double *t)
 {
 	if (obj->type == OBJ_SPHERE)
@@ -22,7 +21,6 @@ static int	intersect_object(const t_ray *ray, const t_object *obj, double *t)
 	return (intersect_cylinder(ray, obj, t));
 }
 
-/* Computes outward normal for a finite capped cylinder. */
 static t_vec3	cylinder_normal(const t_object *obj, t_vec3 point)
 {
 	t_vec3	to_p;
@@ -41,7 +39,6 @@ static t_vec3	cylinder_normal(const t_object *obj, t_vec3 point)
 	return (vec_normalize(vec_sub(point, axis_p)));
 }
 
-/* Stores hit point and surface normal oriented against incoming ray. */
 static void	fill_hit(t_hit *hit, const t_ray *ray,
 	const t_object *obj, double t)
 {
@@ -62,7 +59,6 @@ static void	fill_hit(t_hit *hit, const t_ray *ray,
 	hit->color = obj->color;
 }
 
-/* Finds closest visible hit in front of the ray origin. */
 int	hit_scene(const t_scene *scene, const t_ray *ray, t_hit *hit)
 {
 	int		i;
@@ -81,7 +77,6 @@ int	hit_scene(const t_scene *scene, const t_ray *ray, t_hit *hit)
 	return (hit->hit);
 }
 
-/* Returns true when any object blocks the shadow ray before max_t. */
 int	hit_shadow(const t_scene *scene, const t_ray *ray, double max_t)
 {
 	int		i;

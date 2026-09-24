@@ -6,13 +6,12 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 20:51:47 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 16:09:50 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-/* Parses mandatory ambient element A. */
 int	parse_ambient(t_scene *scene, char **tk, int count, int line_no)
 {
 	if (count != 3)
@@ -26,7 +25,6 @@ int	parse_ambient(t_scene *scene, char **tk, int count, int line_no)
 	return (0);
 }
 
-/* Parses mandatory camera element C. */
 int	parse_camera(t_scene *scene, char **tk, int count, int line_no)
 {
 	if (count != 4)
@@ -42,7 +40,6 @@ int	parse_camera(t_scene *scene, char **tk, int count, int line_no)
 	return (0);
 }
 
-/* Parses mandatory light element L. */
 int	parse_light(t_scene *scene, char **tk, int count, int line_no)
 {
 	if (count != 4)
@@ -57,7 +54,6 @@ int	parse_light(t_scene *scene, char **tk, int count, int line_no)
 	return (0);
 }
 
-/* Dispatches one non-empty line to the corresponding parser. */
 int	parse_line(t_scene *scene, char *line, int line_no)
 {
 	char	**tk;

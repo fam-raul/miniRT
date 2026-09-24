@@ -6,13 +6,12 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 20:50:07 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 15:33:53 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-/* Copies n bytes from src to dst. */
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t			i;
@@ -32,7 +31,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-/* Duplicates a NUL-terminated string. */
 char	*ft_strdup(const char *s)
 {
 	char	*dup;
@@ -47,7 +45,6 @@ char	*ft_strdup(const char *s)
 	return (dup);
 }
 
-/* Returns a newly allocated substring from start with len bytes. */
 char	*ft_substr(const char *s, size_t start, size_t len)
 {
 	char	*sub;

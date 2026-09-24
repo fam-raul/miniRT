@@ -6,13 +6,12 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 20:50:51 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 15:22:23 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-/* Builds orthonormal camera basis vectors from camera direction. */
 void	build_camera_basis(t_camera *cam)
 {
 	t_vec3	world_up;
@@ -28,7 +27,6 @@ void	build_camera_basis(t_camera *cam)
 	cam->tan_half_fov = tan((fov * PI / 180.0) * 0.5);
 }
 
-/* Creates one primary ray going through pixel center. */
 t_ray	create_camera_ray(const t_camera *cam, int x, int y)
 {
 	t_ray	ray;

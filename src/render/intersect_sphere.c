@@ -6,13 +6,12 @@
 /*   By: rmainaga <rmainaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 19:13:31 by rmainaga          #+#    #+#             */
-/*   Updated: 2026/09/23 20:51:04 by rmainaga         ###   ########.fr       */
+/*   Updated: 2026/09/24 15:34:36 by rmainaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-/* Intersects a ray with a sphere and returns nearest positive t. */
 int	intersect_sphere(const t_ray *ray, const t_object *obj, double *t)
 {
 	t_vec3	oc;
